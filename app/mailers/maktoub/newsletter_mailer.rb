@@ -2,6 +2,7 @@ require 'premailer'
 
 module Maktoub
   class NewsletterMailer < ActionMailer::Base
+    include Resque::Mailer
     default from: Maktoub.from,
           parts_order: [ "text/html", "text/plain" ]
 
