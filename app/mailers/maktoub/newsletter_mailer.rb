@@ -1,6 +1,5 @@
 require 'premailer'
 
-module Maktoub
   class NewsletterMailer < ActionMailer::Base
     include Resque::Mailer
     default from: Maktoub.from,
@@ -28,6 +27,5 @@ module Maktoub
         format.html { premailer.to_inline_css.html_safe }
       end
     end
-  end
 end
 

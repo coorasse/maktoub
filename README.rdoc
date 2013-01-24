@@ -40,8 +40,8 @@ Maktoub comes with two rake tasks to allow you to:
   rake maktoub:mail['name_of_my_newsletter_parial']
 
 
-Alternatively you have access to a Maktoub::NewsletterMailer ActionMailer object with a publish method
-  Maktoub::NewsletterMail.publish('my_newsletter_partial', :name => 'User name', :email => 'user@example.com')
+Alternatively you have access to a NewsletterMailer ActionMailer object with a publish method
+  NewsletterMailer.publish('my_newsletter_partial', :name => 'User name', :email => 'user@example.com').deliver
 
 === View in browser
 To be able to view your newsletter in a browser add it to routes.rb.
