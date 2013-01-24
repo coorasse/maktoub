@@ -8,13 +8,13 @@ require 'premailer'
     default_url_options[:host] = Maktoub.home_domain
 
     def publish(newsletter_name, params)
-      @name = params[:name]
+      @name = params['name']
       @subject = newsletter_name.humanize.titleize
-      @email = params[:email]
+      @email = params['email']
       @newsletter_name = newsletter_name
       mail_fields = {
         subject: @subject,
-        to: params[:email]
+        to: params['email']
       }
 
       premailer = Premailer.new(render("maktoub/newsletters/#{newsletter_name}").to_s,
