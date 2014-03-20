@@ -6,6 +6,7 @@ module Maktoub
                   :twitter_url,
                   :facebook_url,
                   :google_plus_url,
+                  :linkedin_url,
                   :subscription_preferences_url,
                   :logo,
                   :home_domain,
@@ -31,10 +32,14 @@ module Maktoub
     end
     
     def unsubscribe(email)
-      subscribers.select do |s| 
-        s.send(email_field) == email     
-      end.each do |s|
-        s.send(unsubscribe_method) if unsubscribe_method
+      if subscribers.class == ActiveRecord::Relation 
+        subscribers.where(email_field => email).first.send(unsubscribe_method)
+      else
+        subscribers.select do |s| 
+          s.send(email_field) == email     
+        end.each do |s|
+          s.send(unsubscribe_method) if unsubscribe_method
+        end
       end
     end
 
